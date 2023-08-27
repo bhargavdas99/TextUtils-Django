@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}
+  TextUtils|Home
+{% endblock %}
+
+{% block style %}
+  #final{
+    display:flex;
+    flex-direction:column;
+    width:70%;
+  }
+  #buttondiv{
+    display:flex;
+    flex-direction:row-reverse;
+    padding:0;
+    background-color:#bababa33;
+  }
+  #copy{
+    width:fit-content;
+  }
+  #myText{
+    background-color:#bababa33;
+    padding:1em;
+  }
+{% endblock %}
+
+{% block body %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>YOUR TEXT HAS BEEN ANAYZED SUCCESSFULLY!!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div>
+    <h2 class="contaner text-center">FINAL RESULT</h2>
+    <hr />
+    <div id="final" class="container">
+      <div id="buttondiv" class="container"><button id="copy" class="btn btn-primary" onclick="myFunction()">Copy</button></div>
+   
+      <p id="myText">{{ analyzedText }}</p>
+    </div>
+  </div>
+  <script>
+    let text = document.getElementById('myText').innerHTML
+    const myFunction = async () => {
+      try {
+        await navigator.clipboard.writeText(text)
+        alert("COPIED!")
+      } catch (err) {
+        console.error('Failed to copy: ', err)
+      }
+    }
+  </script>
+{% endblock %}
+
+{% comment %} {% block script %}
+  {% endcomment %}
+
+  {% comment %}
+{% endblock %} {% endcomment %}
